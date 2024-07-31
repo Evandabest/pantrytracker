@@ -4,7 +4,7 @@ import { Update } from "@/components/actions"
 import { Delete } from "@/components/actions"
 
 const Row = ({ key, item }: any) => {
-    const [amount, setAmount] = useState(item.amount)
+    const [amount, setAmount] = useState<Number>(item.amount)
     const [units, setUnits] = useState(item.units)
 
     const handleChange = (e: any) => {
@@ -19,14 +19,14 @@ const Row = ({ key, item }: any) => {
 
     const decrementAmount = (e: any) => {
         e.preventDefault()
-        if (amount > 0) {
-            setAmount(amount - 1)
+        if (Number(amount) > 0) {
+            setAmount(Number(amount) - 1)
         }
     }
 
     const incrementAmount = (e: any) => {
         e.preventDefault()
-        setAmount(amount + 1)
+        setAmount(Number(amount) + 1)
     }
 
     const handleUpdate = async (e: any) => {
@@ -52,7 +52,7 @@ const Row = ({ key, item }: any) => {
                     <button onClick={decrementAmount}>
                         -
                     </button>
-                    <input name="amount" onChange={handleChange} value={amount}></input>
+                    <input name="amount" onChange={handleChange} value={amount.toString()}></input>
                     <button onClick={incrementAmount}>
                         +
                     </button>

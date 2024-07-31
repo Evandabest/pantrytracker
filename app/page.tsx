@@ -23,7 +23,7 @@ export default async function Home() {
 
   return (
     <>
-      <div className="flex flex-col m-auto">
+      <div className="flex flex-col">
         {items?(
           items.map((item) => {
             return (
