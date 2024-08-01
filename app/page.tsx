@@ -1,23 +1,24 @@
 import { createClient } from "@/utils/supabase/server";
 import Row from "@/components/row";
 
-export default async function Home() {
+export const getData = async () => {
+  "use server"
   const supabase = createClient()
-  const getData = async () => {
-    const {data: {user}} = await supabase.auth.getUser()
-    const {data, error} = await supabase.from("pantry").select("*").eq("owner", user?.id)
-    if (error) {
-      console.log(error)
-    }
-
-    if (data) {
-      console.log(data)
-      return data;
-    }
-    return
-
-    
+  const {data: {user}} = await supabase.auth.getUser()
+  const {data, error} = await supabase.from("pantry").select("*").eq("owner", user?.id)
+  if (error) {
+    console.log(error)
   }
+
+  if (data) {
+    return data;
+  }
+  return null; 
+
+  
+}
+
+export default async function Home() {
 
   const items = await getData()
 

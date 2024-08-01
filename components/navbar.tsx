@@ -12,11 +12,18 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { createClient } from "@/utils/supabase/client";
+import { logout } from "./actions";
 
 
 export function SidebarDemo({children}: {children: ReactNode}) {
     const [name, setName] = useState<string>("")
     const supabase = createClient()
+    const [image, setImage] = useState<string>("")
+
+    const logoutUser = async() => {
+        await logout()
+    }
+    
   
     useEffect(()=> {
         const fetchUserName = async() => {
@@ -29,6 +36,7 @@ export function SidebarDemo({children}: {children: ReactNode}) {
                 return;
             }
             setName(data[0].name)
+            setImage(data[0].pfp)
         }
         fetchUserName()
 
@@ -63,13 +71,6 @@ export function SidebarDemo({children}: {children: ReactNode}) {
         <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
       ),
     },
-    {
-        label: "Logout",
-        href: "#",
-        icon: (
-          <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
-        ),
-      },
   ];
   const [open, setOpen] = useState(false);
   return (
@@ -89,19 +90,40 @@ export function SidebarDemo({children}: {children: ReactNode}) {
                 <SidebarLink key={idx} link={link} />
               ))}
             </div>
+          <div onClick={logoutUser} className="mt-1 flex flex-col gap-2">
+            <SidebarLink
+              link={{
+                label: "Logout",
+                href: "/login",
+                icon: (
+                  <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+                ),
+              }}
+              />
+          </div>
           </div>
           <div>
+          {name ? (
             <SidebarLink
               link={{
                 label: `${name}`,
-                href: "#",
+                href: "/account",
                 icon: (
-                 <>
-                 </>
+                  <>
+                    <div className="w-10 h-10 relative rounded-full overflow-hidden">
+                      <Image
+                        src={image}
+                        layout="fill"
+                        objectFit="cover"
+                        alt="Profile Picture"
+                      />
+                    </div>
+                  </>
                 ),
               }}
             />
-          </div>
+          ) : null}
+        </div>
         </SidebarBody>
       </Sidebar>
       <div className="flex flex-col h-screen w-screen items-center">

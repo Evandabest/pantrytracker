@@ -2,10 +2,12 @@
 import { useState } from "react"
 import { Update } from "@/components/actions"
 import { Delete } from "@/components/actions"
+import { getData } from "@/app/page"
 
 const Row = ({ key, item }: any) => {
     const [amount, setAmount] = useState<Number>(item.amount)
     const [units, setUnits] = useState(item.units)
+    const [visible, setVisible] = useState(true)
 
     const handleChange = (e: any) => {
         e.preventDefault()
@@ -37,15 +39,19 @@ const Row = ({ key, item }: any) => {
             name: item.name
         }
         await Update(formData, item)
+
     }
 
     const handleDelete = async (e: any) => {
         e.preventDefault()
         await Delete(item)
+        setVisible(false)
     }
 
     return (
         <>
+            {
+            visible ? (
             <div className="flex flex-row items-center">
                 <p>{item.name}</p>
                 <form>
@@ -60,7 +66,8 @@ const Row = ({ key, item }: any) => {
                     <button onClick={handleDelete}>Delete</button>
                     <button onClick={handleUpdate}>Update</button>
                 </form>
-            </div>
+            </div>):(null)
+            }
         </>
     )
 }

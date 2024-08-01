@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { SidebarDemo } from "@/components/navbar";
 import Logo from "@/components/logo";
+import Bot from "@/components/bot";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <SidebarDemo>
          <Logo></Logo>
+         <Bot></Bot>
         {children}
         </SidebarDemo>
         </body>
