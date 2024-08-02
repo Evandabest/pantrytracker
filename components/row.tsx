@@ -3,6 +3,16 @@ import { useState } from "react"
 import { Update } from "@/components/actions"
 import { Delete } from "@/components/actions"
 import { getData } from "@/app/page"
+import {
+    Table,
+    TableBody,
+    TableCaption,
+    TableCell,
+    TableFooter,
+    TableHead,
+    TableHeader,
+    TableRow,
+  } from "@/components/ui/table"
 
 const Row = ({ key, item }: any) => {
     const [amount, setAmount] = useState<Number>(item.amount)
@@ -50,23 +60,38 @@ const Row = ({ key, item }: any) => {
 
     return (
         <>
+            {visible ? (
+
+            <TableRow className="flex flex-row items-center justify-center">
+                <TableCell className="text-white">{item.name}</TableCell>
+                <TableCell><button className="text-white" onClick={decrementAmount}>
+                -
+                </button></TableCell>
+                <TableCell><input name="amount" onChange={handleChange} value={amount.toString()}></input></TableCell>
+                <TableCell><button className="text-white" onClick={incrementAmount}>
+                    +
+                </button> </TableCell>
+                <TableCell><input name="units" value={units} onChange={handleUnits}></input></TableCell>
+                <TableCell><button className="text-white" onClick={handleDelete}>Delete</button></TableCell>
+                <TableCell><button className="text-white" onClick={handleUpdate}>Update</button></TableCell>
+            </TableRow>) : (null)}
             {
-            visible ? (
-            <div className="flex flex-row items-center">
-                <p>{item.name}</p>
-                <form>
-                    <button onClick={decrementAmount}>
-                        -
-                    </button>
-                    <input name="amount" onChange={handleChange} value={amount.toString()}></input>
-                    <button onClick={incrementAmount}>
-                        +
-                    </button>
-                    <input name="units" value={units} onChange={handleUnits}></input>
-                    <button onClick={handleDelete}>Delete</button>
-                    <button onClick={handleUpdate}>Update</button>
-                </form>
-            </div>):(null)
+          //  <div className="flex flex-row items-center">
+          //      <p>{item.name}</p>
+          //      <form>
+          //          <button onClick={decrementAmount}>
+          //              -
+          //          </button>
+          //          <input name="amount" onChange={handleChange} value={amount.toString()}></input>
+          //          <button onClick={incrementAmount}>
+          //              +
+          //          </button>
+          //          <input name="units" value={units} onChange={handleUnits}></input>
+          //          <button onClick={handleDelete}>Delete</button>
+          //          <button onClick={handleUpdate}>Update</button>
+          //      </form>
+          //  </div>)}
+          //  :(null)
             }
         </>
     )
