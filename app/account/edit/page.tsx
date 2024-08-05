@@ -104,20 +104,20 @@ const Edit = () => {
 
     return (
         <>   
-            <div className="flex flex-col items-center justify-center">
-                <form className="flex flex-col shadow-md bg-white rounded-md shadow-black p-4 w-80 m-auto items-center justify-center mt-12">
+            <div className="flex flex-col items-center justify-center bg-black p-4 rounded-md">
+                <form className="flex flex-col shadow-md bg-black rounded-md shadow-black p-4 w-80 m-auto items-center justify-center mt-12">
                 {newPfp ? (
                     <img className="rounded-full h-24 w-24 mb-8" src={URL.createObjectURL(newPfp)} alt="Profile Picture" onError={(e) => e.currentTarget.src = 'default-placeholder.png'} />
                     ) : (
                     <img className="rounded-full h-24 w-24 mb-8" src={data.pfp || 'default-placeholder.png'} alt="Profile Picture" onError={(e) => e.currentTarget.src = 'https://fmljhnjkmdazdaaifzha.supabase.co/storage/v1/object/public/pfp/basic-default-pfp-pxi77qv5o0zuz8j3.jpg'} />
                     )}
-                    <p className="my-2">Select new profile picture</p>
-                    <input type="file" onChange={newFile} name="file" />
+                    <p className="my-2 text-white">Select new profile picture</p>
+                    <input className="m-auto text-white border-2 border-white w-[80%] rounded-md" type="file" onChange={newFile} name="file" />
                     <p className="my-2">Display name:</p>
-                    <input name="username" className="mb-8" defaultValue={data.name ?? ""} onChange={changeInfo} value={data.name ?? ""} />
-                    <p className="my-2">Favorite Food:</p>
-                    <input name="username" className="mb-8" defaultValue={data.fav ?? ""} onChange={changeInfo} value={data.fav ?? ""} />
-                    <button type="submit" onClick={(e) => edit(e)}>Confirm changes </button>
+                    <input name="username" className="mb-8 rounded-md" defaultValue={data.name ?? ""} onChange={changeInfo} value={data.name ?? ""} />
+                    <p className="my-2 text-white">Favorite Food:</p>
+                    <input name="username" className="mb-8 rounded-md" defaultValue={data.fav ?? ""} onChange={changeInfo} value={data.fav ?? ""} />
+                    <button className="bg-green-400 text-white p-2 rounded-md" type="submit" onClick={(e) => edit(e)}>Confirm changes </button>
                 </form>
             </div>
         </>

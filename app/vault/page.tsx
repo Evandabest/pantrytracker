@@ -13,11 +13,11 @@ const Vault = async () => {
 
     return (
         <div className="w-[80%] h-[80%] overflow-scroll bg-black rounded-md flex flex-col m-auto">
-            <h1 className="m-auto text-white">Vault of Recipes</h1>
-            <ul>
+            <h1 className="m-auto text-white my-2">Vault of Recipes</h1>
+            <ul className="overflow-scroll ">
                 {data?.map((recipe) => {
                     return (
-                        <li key={recipe.id}>{recipe.recipe}</li>
+                        <li className="text-white w-[70%] m-auto border-2 border-white rounded-md my-4" key={recipe.id}>{recipe.recipe}</li>
                     )
                 })}
             </ul>

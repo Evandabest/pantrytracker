@@ -51,9 +51,8 @@ const Bot = () => {
 
     return (
         <>  
-
             <Dialog>
-                <DialogTrigger>Open</DialogTrigger>
+                <DialogTrigger className=""><i className='bx bx-sm bxs-bot' ></i></DialogTrigger>
                 <DialogContent className="h-[60%] bg-black border-white rounded-md">
                     <DialogHeader>
                     <DialogTitle className="text-white">Recipe generator</DialogTitle>
@@ -73,7 +72,6 @@ const Bot = () => {
                     </DialogHeader>
                 </DialogContent>
             </Dialog>
-
         </>
     )
 }

@@ -11,6 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { redirect } from "next/navigation";
 
 
  const getData = async () => {
@@ -34,15 +35,23 @@ export default async function Home() {
 
   const items = await getData()
 
+  const gotoAdd = () => {
+    "use server"
+    redirect("/add")
+  }
+
   return (
     <>
    <Table className=' w-[60%] m-auto bg-black rounded-md'>
       <TableCaption className='text-black'>Make sure to update your pantry when you are hungry</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[8rem] text-center">Name</TableHead>
-          <TableHead className='w-[10rem] text-center'>Amount</TableHead>
-          <TableHead>Units</TableHead>
+          <TableHead className="w-[8rem] text-center text-white">Name</TableHead>
+          <TableHead className='w-[10rem] text-center text-white'>Amount</TableHead>
+          <TableHead className="text-white flex items-center">
+            Units
+            <form className="ml-[60%]"><button formAction={gotoAdd} className="bg-green-400 text-white p-2 rounded-md">Add</button></form>
+          </TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>

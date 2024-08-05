@@ -13,6 +13,7 @@ import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { createClient } from "@/utils/supabase/client";
 import { logout } from "./actions";
+import 'boxicons/css/boxicons.min.css'; 
 
 
 export function SidebarDemo({children}: {children: ReactNode}) {
@@ -47,28 +48,28 @@ export function SidebarDemo({children}: {children: ReactNode}) {
       label: "Home",
       href: "/",
       icon: (
-        <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        <i className='bx bx-sm bxs-home-alt-2'></i>
       ),
     },
     {
       label: "Add",
       href: "/add",
       icon: (
-        <IconUserBolt className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        <i className='bx bx-sm bx-plus' ></i>
       ),
     },
     {
       label: "Vault",
       href: "/vault",
       icon: (
-        <IconSettings className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        <i className='bx bx-sm bxs-bank' ></i>
       ),
     },
     {
       label: "Account",
       href: "/account",
       icon: (
-        <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5 flex-shrink-0" />
+        <i className='bx bx-sm bxs-user-account' ></i>
       ),
     },
   ];
@@ -82,7 +83,7 @@ export function SidebarDemo({children}: {children: ReactNode}) {
       
     >
       <Sidebar open={open} setOpen={setOpen}>
-        <SidebarBody className="justify-between gap-10">
+        <SidebarBody className="justify-between gap-10 bg-slate-200">
           <div className="flex flex-col">
             {open ? <Logo /> : <LogoIcon />}
             <div className="mt-8 flex flex-col gap-2">

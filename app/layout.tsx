@@ -22,8 +22,12 @@ export default function RootLayout({
       <body className={inter.className}>
         <SidebarDemo>
          <Logo></Logo>
-         <Bot></Bot>
-        {children}
+         <div className="flex justify-end items-end w-full mr-72">
+            <Bot />
+          </div>
+
+          {children}
+
         </SidebarDemo>
         </body>
     </html>
