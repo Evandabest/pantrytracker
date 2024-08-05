@@ -76,13 +76,13 @@ export const generateRecipe = async () => {
         return "Error"
     }
     const prompt = "Make a step by step recipe using the following ingredients: " + data.map((item: any) => {
-        console.log(item)
+        //console.log(item)
         return item.name + item.amount + item.units
     }).join(", ") + "it does not have to include all of the ingredients. Return the recipe in a step by step format."
 
     console.log(prompt)
     const result = await model.generateContent(prompt);
-    const response = await result.response;
+    const response = result.response;
     const text = response.text();
     
     return text
