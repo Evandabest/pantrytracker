@@ -2,6 +2,9 @@
 import { createClient } from "@/utils/supabase/server"
 import { redirect } from "next/navigation"
 import { GoogleGenerativeAI } from "@google/generative-ai"
+import remark from 'remark'
+import remarkHtml from 'remark-html'
+
 
 
 export async function Update(formData: any, item: any) {
@@ -81,5 +84,24 @@ export const generateRecipe = async () => {
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
+    
     return text
+
 }
+
+export const getData = async () => {
+    "use server"
+    const supabase = createClient()
+    const {data: {user}} = await supabase.auth.getUser()
+    const {data, error} = await supabase.from("pantry").select("*").eq("owner", user?.id)
+    if (error) {
+      console.log(error)
+    }
+  
+    if (data) {
+      return data;
+    }
+    return null; 
+  
+    
+  }

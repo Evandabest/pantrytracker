@@ -1,3 +1,4 @@
+"use client"
 import { logout } from "@/components/actions"
 import { useEffect } from "react"
 

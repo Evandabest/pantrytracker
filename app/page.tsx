@@ -1,3 +1,4 @@
+"use server"
 import { createClient } from "@/utils/supabase/server";
 import Row from "@/components/row";
 
@@ -12,7 +13,7 @@ import {
 } from "@/components/ui/table"
 
 
-export const getData = async () => {
+ const getData = async () => {
   "use server"
   const supabase = createClient()
   const {data: {user}} = await supabase.auth.getUser()
@@ -35,17 +36,16 @@ export default async function Home() {
 
   return (
     <>
-    <Table className="bg-black w-[90%] m-auto">
-      <TableCaption className="text-black">Make sure to update your pantry when you are hungry</TableCaption>
+   <Table className=' w-[60%] m-auto bg-black rounded-md'>
+      <TableCaption className='text-black'>Make sure to update your pantry when you are hungry</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px] text-white">Name</TableHead>
-          <TableHead className="text-white" >Amount</TableHead>
-          <TableHead className="text-white">Units</TableHead>
+          <TableHead className="w-[8rem] text-center">Name</TableHead>
+          <TableHead className='w-[10rem] text-center'>Amount</TableHead>
+          <TableHead>Units</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-      <div className="flex flex-col">
         {items?(
           items.map((item) => {
             return (
@@ -55,7 +55,6 @@ export default async function Home() {
         ):(
           null
         )}
-      </div>
         </TableBody>
       </Table>
 

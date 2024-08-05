@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 interface profileInfo {
     pfp: string | null;
     name: string | null;
+    fav: string | null;
 }
 
 const Edit = () => {
@@ -14,6 +15,7 @@ const Edit = () => {
     const [data, setData] = useState<profileInfo>({
         pfp: "",
         name: "",
+        fav: ""
     })
     const [newPfp, setNewPfp] = useState<File | undefined>(undefined)
     const [id, setId] = useState<string | undefined>(undefined)
@@ -113,6 +115,8 @@ const Edit = () => {
                     <input type="file" onChange={newFile} name="file" />
                     <p className="my-2">Display name:</p>
                     <input name="username" className="mb-8" defaultValue={data.name ?? ""} onChange={changeInfo} value={data.name ?? ""} />
+                    <p className="my-2">Favorite Food:</p>
+                    <input name="username" className="mb-8" defaultValue={data.fav ?? ""} onChange={changeInfo} value={data.fav ?? ""} />
                     <button type="submit" onClick={(e) => edit(e)}>Confirm changes </button>
                 </form>
             </div>

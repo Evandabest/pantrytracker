@@ -2,7 +2,7 @@
 import { useState } from "react"
 import { Update } from "@/components/actions"
 import { Delete } from "@/components/actions"
-import { getData } from "@/app/page"
+import { getData } from "@/components/actions"
 import {
     Table,
     TableBody,
@@ -62,19 +62,24 @@ const Row = ({ key, item }: any) => {
         <>
             {visible ? (
 
-            <TableRow className="flex flex-row items-center justify-center">
-                <TableCell className="text-white">{item.name}</TableCell>
-                <TableCell><button className="text-white" onClick={decrementAmount}>
-                -
-                </button></TableCell>
-                <TableCell><input name="amount" onChange={handleChange} value={amount.toString()}></input></TableCell>
-                <TableCell><button className="text-white" onClick={incrementAmount}>
+            <TableRow key={key}>
+                <TableCell className="font-medium text-white text-center">{item.name}</TableCell>
+                <TableCell className='flex flex-row '>
+                <button onClick={decrementAmount} className="text-white p-2 mx-2 bg-red-400 rounded-md">
+                    -
+                </button>
+                <input name="amount" onChange={handleChange} className='w-[4rem]' value={amount.toLocaleString()}></input>
+                <button onClick={incrementAmount} className="text-white p-2 mx-2 bg-green-400 rounded-md" >
                     +
-                </button> </TableCell>
-                <TableCell><input name="units" value={units} onChange={handleUnits}></input></TableCell>
-                <TableCell><button className="text-white" onClick={handleDelete}>Delete</button></TableCell>
-                <TableCell><button className="text-white" onClick={handleUpdate}>Update</button></TableCell>
-            </TableRow>) : (null)}
+                </button> 
+                </TableCell>
+                <TableCell>
+                    <input onChange={handleUnits}  name="units" value={units}></input>
+                    <button onClick={handleDelete} className="text-white p-2 mx-3  bg-red-400 rounded-md">Delete</button>
+                    <button onClick={handleUpdate} className="text-white p-2 mx-3 bg-green-400 rounded-md">Update</button>
+                </TableCell>
+            </TableRow> 
+            )  : (null)}
             {
           //  <div className="flex flex-row items-center">
           //      <p>{item.name}</p>
